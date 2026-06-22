@@ -1,0 +1,44 @@
+services:
+  # 1. Cơ sở dữ liệu MongoDB
+  mongodb:
+    image: mongo:6.0
+    container_name: antiptit_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+
+  # 2. Backend .NET 10
+  backend:
+    build:
+      context: ./backend          # Đi vào thư mục backend để build
+      dockerfile: Dockerfile
+    container_name: antiptit_backend
+    ports:
+      - "5000:8080"               # Ánh xạ cổng 8080 bên trong container ra cổng 5000 máy thật
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__MongoDb=mongodb+srv://phamduyanhkg_db_user:9R1Galuco1tQ2lfD@antiptit.s3u1pce.mongodb.net/?appName=AntiPTIT
+      - TZ=Asia/Ho_Chi_Minh
+    depends_on:
+      - mongodb                   # Chờ database khởi động xong mới chạy API
+
+  # 3. Frontend Next.js 16
+  frontend:
+    build:
+      context: ./frontend         # Đi vào thư mục frontend để build
+      dockerfile: Dockerfile
+    container_name: antiptit_frontend
+    ports:
+      - "3000:3000"               # Mở cổng 3000 để truy cập giao diện từ máy thật
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:5000  # Đường dẫn gọi xuống API .NET
+      - TZ=Asia/Ho_Chi_Minh       # Ép toàn bộ thành viên chạy chung giờ Việt Nam
+    depends_on:
+      - backend                   # Chờ API lên trước rồi mới kích hoạt Frontend
+
+volumes:
+  mongo_data:                     # Giữ lại dữ liệu MongoDB không bị mất khi stop/down container

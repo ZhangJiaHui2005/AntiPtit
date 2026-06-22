@@ -1,0 +1,6 @@
+@AntiPtit.API_HostAddress = http://localhost:5223
+
+GET {{AntiPtit.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
