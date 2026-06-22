@@ -26,4 +26,4 @@ COPY --from=build /app/publish .
 # Cổng mặc định của .NET 8/10 khi chạy container là 8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "BlogHub.API.dll"]
+ENTRYPOINT ["dotnet", "AntiPtit.API.dll"]
