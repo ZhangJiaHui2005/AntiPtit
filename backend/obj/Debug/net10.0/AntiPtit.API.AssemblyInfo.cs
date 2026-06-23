@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AntiPtit.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dcbc39712e7499ad4c20c4ec2154b6d6ffa4220c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e6dd33c72c61a0853b0fbb8478148d605ca3aaf")]
 [assembly: System.Reflection.AssemblyProductAttribute("AntiPtit.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AntiPtit.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
